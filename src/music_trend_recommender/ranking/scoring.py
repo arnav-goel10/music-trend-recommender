@@ -6,7 +6,7 @@ but do not by themselves demonstrate recommendation-quality improvement.
 
 from collections.abc import Mapping
 from datetime import date
-from math import exp, isfinite, log
+from math import exp, isclose, isfinite, log
 from types import MappingProxyType
 
 from music_trend_recommender.domain import Candidate, ScoredCandidate
@@ -21,6 +21,8 @@ SOURCE_WEIGHTS: Mapping[str, float] = MappingProxyType(
         "competitor_playlist": 0.20,
     }
 )
+
+_MOMENTUM_THRESHOLD_ABS_TOLERANCE = 1e-12
 
 
 def rank_value(rank: int, list_size: int = 100) -> float:
@@ -76,9 +78,19 @@ def _momentum_factor(raw_score: float, previous_raw_score: float | None) -> floa
     if previous_raw_score is None:
         return 1.0
     delta = raw_score - previous_raw_score
-    if delta > 0.05:
+    if delta > 0.05 or isclose(
+        delta,
+        0.05,
+        rel_tol=0.0,
+        abs_tol=_MOMENTUM_THRESHOLD_ABS_TOLERANCE,
+    ):
         return 1.20
-    if delta < -0.15:
+    if delta < -0.15 or isclose(
+        delta,
+        -0.15,
+        rel_tol=0.0,
+        abs_tol=_MOMENTUM_THRESHOLD_ABS_TOLERANCE,
+    ):
         return 0.80
     return 1.0
 

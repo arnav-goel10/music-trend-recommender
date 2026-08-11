@@ -132,6 +132,37 @@ def test_momentum_compares_raw_score_stage() -> None:
     assert rising.final_score > baseline.final_score > falling.final_score
 
 
+@pytest.mark.parametrize(
+    ("rank", "raw_delta", "expected_factor"),
+    [
+        (8, 0.05, 1.20),
+        (8, 0.05000001, 1.20),
+        (8, 0.04999999, 1.00),
+        (1, -0.15, 0.80),
+        (1, -0.15000001, 0.80),
+        (1, -0.14999999, 1.00),
+    ],
+)
+def test_momentum_thresholds_are_inclusive_without_widening_neutral_band(
+    rank: int,
+    raw_delta: float,
+    expected_factor: float,
+) -> None:
+    scoring = load_scoring()
+    candidate = make_candidate({"youtube": rank})
+    as_of = date(2026, 1, 8)
+    baseline = scoring.score_candidate(candidate, as_of=as_of, previous_raw_score=None)
+
+    result = scoring.score_candidate(
+        candidate,
+        as_of=as_of,
+        previous_raw_score=baseline.raw_score - raw_delta,
+    )
+
+    assert result.raw_score == baseline.raw_score
+    assert result.components["momentum"] == expected_factor
+
+
 @pytest.mark.parametrize("previous", [-0.1, float("inf"), float("-inf"), float("nan"), True])
 def test_invalid_previous_raw_score_is_rejected(previous: object) -> None:
     scoring = load_scoring()
