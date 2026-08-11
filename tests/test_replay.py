@@ -154,6 +154,28 @@ def test_out_of_order_input_is_sorted_and_duplicate_weeks_are_rejected() -> None
         replay_module.replay([first, first], k=1, method="deterministic", seeds=[])
 
 
+@pytest.mark.parametrize(
+    ("method", "seeds"),
+    [("deterministic", []), ("gumbel", [7])],
+)
+def test_replay_rejects_duplicate_candidate_keys_within_a_week(
+    method: str,
+    seeds: list[int],
+) -> None:
+    replay_module = load_replay()
+    week = snapshot(
+        date(2026, 1, 5),
+        (
+            candidate("duplicate", {"youtube": 1}),
+            candidate("duplicate", {"shazam": 100}),
+        ),
+        frozenset({"duplicate"}),
+    )
+
+    with pytest.raises(ValueError, match="duplicate candidate keys.*2026-01-05"):
+        replay_module.replay([week], k=2, method=method, seeds=seeds)
+
+
 def test_repeated_gumbel_seeds_are_reproducible_order_independent_aggregates() -> None:
     replay_module = load_replay()
     week = snapshot(

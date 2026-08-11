@@ -7,8 +7,14 @@ from math import log2
 from music_trend_recommender.domain import ScoredCandidate
 
 
+def _validate_unique_ranked_keys(ranked_keys: Sequence[str]) -> None:
+    if len(set(ranked_keys)) != len(ranked_keys):
+        raise ValueError("ranked_keys must contain unique keys")
+
+
 def precision_at_k(ranked_keys: Sequence[str], relevant: AbstractSet[str], k: int) -> float:
     """Return relevant results in the first ``k`` positions divided by ``k``."""
+    _validate_unique_ranked_keys(ranked_keys)
     if k <= 0:
         return 0.0
     hits = sum(key in relevant for key in ranked_keys[:k])
@@ -17,6 +23,7 @@ def precision_at_k(ranked_keys: Sequence[str], relevant: AbstractSet[str], k: in
 
 def recall_at_k(ranked_keys: Sequence[str], relevant: AbstractSet[str], k: int) -> float:
     """Return the fraction of relevant keys retrieved in the first ``k`` positions."""
+    _validate_unique_ranked_keys(ranked_keys)
     if k <= 0 or not relevant:
         return 0.0
     hits = sum(key in relevant for key in ranked_keys[:k])
@@ -25,6 +32,7 @@ def recall_at_k(ranked_keys: Sequence[str], relevant: AbstractSet[str], k: int) 
 
 def ndcg_at_k(ranked_keys: Sequence[str], relevant: AbstractSet[str], k: int) -> float:
     """Return binary-relevance normalized discounted cumulative gain at ``k``."""
+    _validate_unique_ranked_keys(ranked_keys)
     if k <= 0 or not relevant:
         return 0.0
 

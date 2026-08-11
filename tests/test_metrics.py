@@ -70,6 +70,15 @@ def test_precision_uses_requested_cutoff_when_ranking_is_shorter() -> None:
     assert metrics.ndcg_at_k(["a"], {"a"}, 3) == 1.0
 
 
+@pytest.mark.parametrize("metric_name", ["precision_at_k", "recall_at_k", "ndcg_at_k"])
+def test_ranking_metrics_reject_duplicate_ranked_keys(metric_name: str) -> None:
+    metrics = load_metrics()
+    metric = getattr(metrics, metric_name)
+
+    with pytest.raises(ValueError, match="ranked_keys must contain unique keys"):
+        metric(["a", "a"], {"a"}, 2)
+
+
 def test_source_coverage_counts_distinct_represented_sources() -> None:
     metrics = load_metrics()
     ranked = [

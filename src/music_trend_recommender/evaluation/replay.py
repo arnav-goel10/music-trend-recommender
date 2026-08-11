@@ -117,6 +117,12 @@ def replay(
     weeks = [snapshot.week for snapshot in chronological]
     if len(set(weeks)) != len(weeks):
         raise ValueError("duplicate week dates are not allowed")
+    for snapshot in chronological:
+        candidate_keys = [candidate.key for candidate in snapshot.candidates]
+        if len(set(candidate_keys)) != len(candidate_keys):
+            raise ValueError(
+                f"duplicate candidate keys are not allowed in week {snapshot.week.isoformat()}"
+            )
 
     previous_raw_scores: dict[str, float] = {}
     rows: list[ReplayRow] = []
