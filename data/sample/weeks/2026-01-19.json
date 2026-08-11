@@ -1,0 +1,69 @@
+{
+  "week": "2026-01-19",
+  "candidates": [
+    {
+      "key": "synthetic-artist-a::synthetic-track-alpha",
+      "title": "Synthetic Track Alpha",
+      "artist": "Synthetic Artist A",
+      "source_ranks": {"youtube": 3, "shazam": 7, "apple_music": 16},
+      "first_seen": "2026-01-05"
+    },
+    {
+      "key": "synthetic-artist-b::synthetic-track-bravo",
+      "title": "Synthetic Track Bravo",
+      "artist": "Synthetic Artist B",
+      "source_ranks": {"tiktok_breakout": 4, "apple_music": 13},
+      "first_seen": "2026-01-05"
+    },
+    {
+      "key": "synthetic-artist-c::synthetic-track-cascade",
+      "title": "Synthetic Track Cascade",
+      "artist": "Synthetic Artist C",
+      "source_ranks": {"youtube": 24, "competitor_playlist": 15},
+      "first_seen": "2025-12-29"
+    },
+    {
+      "key": "synthetic-artist-d::synthetic-track-drift",
+      "title": "Synthetic Track Drift",
+      "artist": "Synthetic Artist D",
+      "source_ranks": {"shazam": 22, "tiktok_popular": 46},
+      "first_seen": "2025-12-22"
+    },
+    {
+      "key": "synthetic-artist-i::synthetic-track-ion",
+      "title": "Synthetic Track Ion",
+      "artist": "Synthetic Artist I",
+      "source_ranks": {"tiktok_breakout": 2, "youtube": 18, "shazam": 10},
+      "first_seen": "2026-01-12"
+    },
+    {
+      "key": "synthetic-artist-j::synthetic-track-jade",
+      "title": "Synthetic Track Jade",
+      "artist": "Synthetic Artist J",
+      "source_ranks": {"competitor_playlist": 5, "shazam": 17},
+      "first_seen": "2026-01-12"
+    },
+    {
+      "key": "synthetic-artist-k::synthetic-track-kite",
+      "title": "Synthetic Track Kite",
+      "artist": "Synthetic Artist K",
+      "source_ranks": {"tiktok_popular": 11, "apple_music": 31},
+      "first_seen": "2026-01-19"
+    },
+    {
+      "key": "synthetic-artist-l::synthetic-track-lumen",
+      "title": "Synthetic Track Lumen",
+      "artist": "Synthetic Artist L",
+      "source_ranks": {"youtube": 29, "competitor_playlist": 19},
+      "first_seen": "2026-01-19"
+    }
+  ],
+  "relevant_next_week": [
+    "synthetic-artist-a::synthetic-track-alpha",
+    "synthetic-artist-b::synthetic-track-bravo",
+    "synthetic-artist-i::synthetic-track-ion",
+    "synthetic-artist-j::synthetic-track-jade",
+    "synthetic-artist-k::synthetic-track-kite",
+    "synthetic-artist-l::synthetic-track-lumen"
+  ]
+}

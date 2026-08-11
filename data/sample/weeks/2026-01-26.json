@@ -1,0 +1,62 @@
+{
+  "week": "2026-01-26",
+  "candidates": [
+    {
+      "key": "synthetic-artist-a::synthetic-track-alpha",
+      "title": "Synthetic Track Alpha",
+      "artist": "Synthetic Artist A",
+      "source_ranks": {"youtube": 2, "shazam": 5, "apple_music": 11},
+      "first_seen": "2026-01-05"
+    },
+    {
+      "key": "synthetic-artist-b::synthetic-track-bravo",
+      "title": "Synthetic Track Bravo",
+      "artist": "Synthetic Artist B",
+      "source_ranks": {"tiktok_popular": 8, "apple_music": 9},
+      "first_seen": "2026-01-05"
+    },
+    {
+      "key": "synthetic-artist-i::synthetic-track-ion",
+      "title": "Synthetic Track Ion",
+      "artist": "Synthetic Artist I",
+      "source_ranks": {"tiktok_breakout": 1, "youtube": 12, "shazam": 6},
+      "first_seen": "2026-01-12"
+    },
+    {
+      "key": "synthetic-artist-j::synthetic-track-jade",
+      "title": "Synthetic Track Jade",
+      "artist": "Synthetic Artist J",
+      "source_ranks": {"competitor_playlist": 4, "shazam": 13},
+      "first_seen": "2026-01-12"
+    },
+    {
+      "key": "synthetic-artist-k::synthetic-track-kite",
+      "title": "Synthetic Track Kite",
+      "artist": "Synthetic Artist K",
+      "source_ranks": {"tiktok_popular": 7, "apple_music": 22},
+      "first_seen": "2026-01-19"
+    },
+    {
+      "key": "synthetic-artist-l::synthetic-track-lumen",
+      "title": "Synthetic Track Lumen",
+      "artist": "Synthetic Artist L",
+      "source_ranks": {"youtube": 21, "competitor_playlist": 12},
+      "first_seen": "2026-01-19"
+    },
+    {
+      "key": "synthetic-artist-m::synthetic-track-mosaic",
+      "title": "Synthetic Track Mosaic",
+      "artist": "Synthetic Artist M",
+      "source_ranks": {"tiktok_breakout": 5, "shazam": 28},
+      "first_seen": "2026-01-26"
+    },
+    {
+      "key": "synthetic-artist-n::synthetic-track-nova",
+      "title": "Synthetic Track Nova",
+      "artist": "Synthetic Artist N",
+      "source_ranks": {"youtube": 14, "apple_music": 25},
+      "first_seen": "2026-01-26"
+    }
+  ],
+  "relevant_next_week": []
+}

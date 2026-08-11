@@ -1,0 +1,69 @@
+{
+  "week": "2026-01-05",
+  "candidates": [
+    {
+      "key": "synthetic-artist-a::synthetic-track-alpha",
+      "title": "Synthetic Track Alpha",
+      "artist": "Synthetic Artist A",
+      "source_ranks": {"youtube": 8, "shazam": 14},
+      "first_seen": "2026-01-05"
+    },
+    {
+      "key": "synthetic-artist-b::synthetic-track-bravo",
+      "title": "Synthetic Track Bravo",
+      "artist": "Synthetic Artist B",
+      "source_ranks": {"tiktok_breakout": 12, "apple_music": 26},
+      "first_seen": "2026-01-05"
+    },
+    {
+      "key": "synthetic-artist-c::synthetic-track-cascade",
+      "title": "Synthetic Track Cascade",
+      "artist": "Synthetic Artist C",
+      "source_ranks": {"youtube": 20, "competitor_playlist": 11},
+      "first_seen": "2025-12-29"
+    },
+    {
+      "key": "synthetic-artist-d::synthetic-track-drift",
+      "title": "Synthetic Track Drift",
+      "artist": "Synthetic Artist D",
+      "source_ranks": {"shazam": 6},
+      "first_seen": "2025-12-22"
+    },
+    {
+      "key": "synthetic-artist-e::synthetic-track-ember",
+      "title": "Synthetic Track Ember",
+      "artist": "Synthetic Artist E",
+      "source_ranks": {"apple_music": 18, "youtube": 33},
+      "first_seen": "2026-01-05"
+    },
+    {
+      "key": "synthetic-artist-f::synthetic-track-flare",
+      "title": "Synthetic Track Flare",
+      "artist": "Synthetic Artist F",
+      "source_ranks": {"tiktok_popular": 40, "shazam": 22},
+      "first_seen": "2025-12-29"
+    },
+    {
+      "key": "synthetic-artist-g::synthetic-track-glass",
+      "title": "Synthetic Track Glass",
+      "artist": "Synthetic Artist G",
+      "source_ranks": {"competitor_playlist": 31},
+      "first_seen": "2025-12-15"
+    },
+    {
+      "key": "synthetic-artist-h::synthetic-track-halo",
+      "title": "Synthetic Track Halo",
+      "artist": "Synthetic Artist H",
+      "source_ranks": {"tiktok_breakout": 44, "youtube": 52},
+      "first_seen": "2026-01-05"
+    }
+  ],
+  "relevant_next_week": [
+    "synthetic-artist-a::synthetic-track-alpha",
+    "synthetic-artist-b::synthetic-track-bravo",
+    "synthetic-artist-c::synthetic-track-cascade",
+    "synthetic-artist-d::synthetic-track-drift",
+    "synthetic-artist-e::synthetic-track-ember",
+    "synthetic-artist-f::synthetic-track-flare"
+  ]
+}
