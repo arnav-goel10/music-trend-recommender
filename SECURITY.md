@@ -12,6 +12,6 @@ Include the affected commit, reproduction steps, impact, and any suggested mitig
 
 ## Credential and data boundary
 
-The offline demo requires no credentials or network access. Never commit API keys, tokens, cookies, signing material, `.env` files, real-user data, raw platform exports, or anti-bot bypass logic. If a credential is exposed, revoke it at the provider before removing it from Git history.
+The offline demo uses local synthetic snapshots and requires no credentials or network access. Keep API keys, tokens, `.env` files, and private user data outside the repository. If a credential is exposed, revoke it at the provider before removing it from Git history.
 
-Only use data you are authorized to collect, process, and redistribute. The checked-in fixtures are synthetic.
+Only use data you are authorized to collect, process, and redistribute. The checked-in fixtures are fully synthetic.

@@ -2,7 +2,7 @@
 
 ## Design goal
 
-The package isolates ranking mechanics from proprietary ingestion and playlist-writing code. A local JSON snapshot is enough to exercise the complete scoring, selection, and temporal-evaluation path without credentials or network access.
+The package separates data-source adapters from ranking and evaluation. A local JSON snapshot is enough to exercise the complete scoring, selection, and temporal-evaluation path without credentials or network access.
 
 ## Components
 
@@ -12,9 +12,9 @@ The package isolates ranking mechanics from proprietary ingestion and playlist-w
 
 ### Source boundary
 
-`SnapshotSource` is the ingestion protocol. `FileSnapshotSource` is the public implementation and strictly validates local UTF-8 JSON. It rejects unknown/missing fields, duplicate candidate keys or weeks, invalid dates/ranks/popularity, and non-increasing directory snapshots.
+`SnapshotSource` is the ingestion protocol. `FileSnapshotSource` is the included implementation and strictly validates local UTF-8 JSON. It rejects unknown/missing fields, duplicate candidate keys or weeks, invalid dates/ranks/popularity, and non-increasing directory snapshots.
 
-The boundary can support a compliant API adapter in a private deployment, but this repository intentionally contains no scraper, anti-bot bypass, signing secret, credential flow, or platform write path.
+Additional data sources can implement the same protocol without changing the scoring, selection, or evaluation core.
 
 ### Scoring
 

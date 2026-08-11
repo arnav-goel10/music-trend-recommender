@@ -1,25 +1,9 @@
-# Provenance and publication boundary
+# Ownership and contributions
 
-This repository is a newly initialized, clean-room public rebuild of a private Spotify trend-ranking prototype created by Arnav Goel.
+Developed and maintained by Arnav Goel.
 
-## What was retained
+The implementation, tests, documentation, and synthetic fixtures in this repository are maintained as one standalone project. Future contributions will be credited through the repository's Git history and pull requests.
 
-The rebuild retains high-level engineering lessons: combining multiple ranked sources, decomposing scores for inspection, balancing exploitation with seeded exploration, carrying week-over-week state, and evaluating rankings chronologically.
+The included evaluation dataset is fully synthetic and reproducible. Platform-like source names describe signal categories in the example schema; they do not imply affiliation or endorsement.
 
-All public implementation code, tests, synthetic fixtures, documentation, and repository history were created for this standalone repository. The GitHub repository is published directly under `arnav-goel10`; it is not a fork or imported repository.
-
-## What was excluded
-
-- private repository files and commit history;
-- real or raw chart exports and local state;
-- scraped data without clear redistribution rights;
-- anti-bot bypasses, request-signing logic, or hard-coded signing material;
-- API credentials, tokens, cookies, or `.env` files;
-- credentialed Spotify playlist writes or account mutations;
-- claims based on private or real-user metrics.
-
-The checked-in dataset is invented and redistributable. Platform-like source names describe schema categories only; they do not imply that the sample contains records from those services or that this repository is affiliated with them.
-
-## Ownership and license
-
-Arnav Goel owns the clean-room materials published in this repository and licenses them under MIT. No license is asserted over excluded private or third-party materials.
+The project is available under the MIT License.

@@ -93,10 +93,10 @@ diff -u examples/evaluation-summary.json /tmp/summary.json
 
 The test suite covers immutability, scoring boundaries, exact metric examples, seeded selection, non-mutation, duplicate rejection, future-feature leakage, repeated-seed aggregation, strict adapters, deterministic artifacts, and credential-free CLI execution.
 
-## Project provenance
+## Ownership and data
 
-This is a clean-room public rebuild of Arnav Goel's private Spotify trend-ranking prototype. It preserves the system-design lessons while intentionally excluding private history, copied source/data, anti-bot or signing logic, credentialed Spotify write paths, and raw chart exports. Read the full [provenance statement](docs/provenance.md).
+Developed and maintained by Arnav Goel. The included evaluation dataset is fully synthetic and reproducible. See the [ownership note](docs/provenance.md) and [data card](DATA_CARD.md) for details.
 
 ## License and security
 
-The clean-room code in this repository is released under the [MIT License](LICENSE). Please report vulnerabilities according to [SECURITY.md](SECURITY.md); do not commit credentials or private platform data.
+This project is released under the [MIT License](LICENSE). Please report vulnerabilities according to [SECURITY.md](SECURITY.md).
