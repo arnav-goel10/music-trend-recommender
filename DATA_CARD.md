@@ -12,7 +12,7 @@
 - verify chronological replay and future-leakage resistance;
 - reproduce the checked-in diagnostic evaluation artifact without credentials.
 
-## Creation and provenance
+## Dataset creation
 
 Every artist name, track name, key, rank, date, popularity value, and relevance label is synthetic and was created for this repository. No Spotify, TikTok, YouTube, Shazam, Apple Music, competitor-playlist, or other real chart export is included.
 

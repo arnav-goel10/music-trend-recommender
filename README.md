@@ -6,6 +6,8 @@ This repository demonstrates candidate normalization, inspectable score decompos
 
 > **Evidence boundary:** every metric below is a deterministic diagnostic from the repository's synthetic four-week fixture. It is not a real-user result and does not establish recommendation-quality improvement.
 
+Developed and maintained by Arnav Goel. The included evaluation dataset is fully synthetic and reproducible.
+
 ## What it demonstrates
 
 - **Multi-source retrieval signals:** normalizes ranks from six configurable chart/source types and reweights over the evidence actually present for each candidate.
@@ -78,7 +80,7 @@ Each snapshot is a UTF-8 JSON object with:
 - `candidates`: unique tracks with `key`, title, artist, `first_seen`, and positive integer `source_ranks`;
 - `relevant_next_week`: unique candidate keys used only after ranking for evaluation.
 
-See [DATA_CARD.md](DATA_CARD.md) for fixture provenance and limitations. The adapter rejects malformed fields, duplicate keys/weeks, non-canonical dates, and invalid rank or popularity values with concise errors.
+See [DATA_CARD.md](DATA_CARD.md) for fixture construction and limitations. The adapter rejects malformed fields, duplicate keys/weeks, non-canonical dates, and invalid rank or popularity values with concise errors.
 
 ## Quality gate
 
@@ -92,10 +94,6 @@ diff -u examples/evaluation-summary.json /tmp/summary.json
 ```
 
 The test suite covers immutability, scoring boundaries, exact metric examples, seeded selection, non-mutation, duplicate rejection, future-feature leakage, repeated-seed aggregation, strict adapters, deterministic artifacts, and credential-free CLI execution.
-
-## Ownership and data
-
-Developed and maintained by Arnav Goel. The included evaluation dataset is fully synthetic and reproducible. See the [ownership note](docs/provenance.md) and [data card](DATA_CARD.md) for details.
 
 ## License and security
 
