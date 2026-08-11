@@ -18,7 +18,7 @@ Additional data sources can implement the same protocol without changing the sco
 
 ### Scoring
 
-The scorer converts each available source rank into a bounded log-linear value. It computes a normalized weighted blend over present configured sources, so missing sources are absence—not sentinel rank values. The final score is:
+The scorer converts each available source rank into a bounded log-linear value. It computes a normalized weighted blend over present configured sources, so missing sources are absence, not sentinel rank values. The final score is:
 
 ```text
 source_blend
