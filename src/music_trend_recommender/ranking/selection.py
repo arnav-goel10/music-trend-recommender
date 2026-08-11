@@ -2,7 +2,7 @@
 
 import random
 from collections.abc import Sequence
-from math import log
+from math import isfinite, log
 
 from music_trend_recommender.domain import ScoredCandidate
 
@@ -32,8 +32,8 @@ def gumbel_top_k(
     seed: int,
 ) -> list[ScoredCandidate]:
     """Sample a seeded Gumbel-Top-k ranking without mutating input candidates."""
-    if temperature <= 0:
-        raise ValueError("temperature must be positive")
+    if not isfinite(temperature) or temperature <= 0:
+        raise ValueError("temperature must be positive and finite")
 
     rng = random.Random(seed)
     priorities = [

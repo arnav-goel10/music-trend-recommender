@@ -112,11 +112,13 @@ def test_gumbel_priority_uses_log_weight_divided_by_temperature(
     assert keys(ranked) == ["high", "low"]
 
 
-@pytest.mark.parametrize("temperature", [0.0, -0.1])
-def test_gumbel_top_k_rejects_non_positive_temperature(temperature: float) -> None:
+@pytest.mark.parametrize("temperature", [0.0, -0.1, float("nan"), float("inf"), float("-inf")])
+def test_gumbel_top_k_rejects_non_positive_or_non_finite_temperature(
+    temperature: float,
+) -> None:
     selection = load_selection()
 
-    with pytest.raises(ValueError, match="temperature must be positive"):
+    with pytest.raises(ValueError, match="^temperature must be positive and finite$"):
         selection.gumbel_top_k([scored("alpha", 0.5)], k=1, temperature=temperature, seed=1)
 
 
