@@ -1,5 +1,7 @@
 # Music Trend Recommender
 
+[![CI](https://github.com/arnav-goel10/music-trend-recommender/actions/workflows/ci.yml/badge.svg)](https://github.com/arnav-goel10/music-trend-recommender/actions/workflows/ci.yml)
+
 A multi-source music discovery and ranking pipeline with temporal replay evaluation and seeded Gumbel-Top-k exploration.
 
 This repository demonstrates candidate normalization, inspectable score decomposition, stochastic exploration, state carried across weekly snapshots, and offline ranking diagnostics. The checked-in demo uses synthetic data and requires no platform credentials.
