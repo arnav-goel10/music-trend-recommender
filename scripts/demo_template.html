@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Music Trend Recommender · replay demo</title>
+<style>
+  :root{ --bg:#0d1117; --panel:#161b22; --line:#30363d; --ink:#e6edf3; --soft:#8b949e; --accent:#e2601f; --blue:#539bf5; --green:#3fb950; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:var(--ink); font:14px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; padding:2rem 1rem 4rem; }
+  .wrap{ max-width:880px; margin:0 auto; }
+  h1{ font-size:1.35rem; margin:0 0 .3rem; }
+  .sub{ color:var(--soft); margin:0 0 1rem; }
+  .boundary{ border:1px solid var(--line); border-left:3px solid var(--accent); background:var(--panel); padding:.7rem .9rem; color:var(--soft); font-size:.82rem; margin-bottom:1.4rem; }
+  .tabs{ display:flex; gap:.4rem; margin-bottom:1rem; flex-wrap:wrap; }
+  .tabs button{ background:var(--panel); color:var(--soft); border:1px solid var(--line); border-radius:6px; padding:.35rem .8rem; font:inherit; cursor:pointer; }
+  .tabs button.on{ color:var(--ink); border-color:var(--accent); }
+  .card{ background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:.9rem 1rem; margin-bottom:.7rem; }
+  .row1{ display:flex; justify-content:space-between; gap:1rem; align-items:baseline; flex-wrap:wrap; }
+  .rank{ color:var(--accent); }
+  .title{ font-weight:600; }
+  .artist{ color:var(--soft); }
+  .score{ color:var(--green); }
+  .persist{ font-size:.72rem; color:var(--blue); border:1px solid var(--blue); border-radius:999px; padding:.05rem .5rem; }
+  .srcs{ color:var(--soft); font-size:.78rem; margin:.25rem 0 .55rem; }
+  .comp{ display:grid; grid-template-columns:8.5rem 1fr 3.5rem; gap:.35rem .6rem; align-items:center; font-size:.75rem; color:var(--soft); }
+  .bar{ height:6px; background:#21262d; border-radius:3px; overflow:hidden; }
+  .bar i{ display:block; height:100%; background:var(--accent); }
+  h2{ font-size:1rem; margin:2rem 0 .6rem; }
+  table{ border-collapse:collapse; width:100%; font-size:.8rem; }
+  th,td{ border:1px solid var(--line); padding:.4rem .6rem; text-align:right; }
+  th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){ text-align:left; }
+  th{ color:var(--soft); font-weight:500; }
+  .foot{ color:var(--soft); font-size:.78rem; margin-top:1.6rem; }
+  a{ color:var(--blue); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Music Trend Recommender · weekly replay</h1>
+  <p class="sub">deterministic ranking with inspectable score decomposition, over the checked-in synthetic fixture</p>
+  <div class="boundary">Evidence boundary: everything on this page is computed from the repository's synthetic four-week fixture by <code>scripts/build_demo.py</code> using the real scoring code. No real chart data, no credentials, no recommendation-quality claim.</div>
+
+  <div class="tabs" id="tabs"></div>
+  <div id="list"></div>
+
+  <h2>Replay evaluation · deterministic vs seeded Gumbel-Top-k (k=5, 20 seeds)</h2>
+  <table id="evalTable">
+    <thead><tr><th>week</th><th>method</th><th>precision@k</th><th>recall@k</th><th>NDCG@k</th><th>source coverage</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <p class="foot">Gumbel rows show mean ± population std over seeds 0-19. Ranking week <em>t</em> uses only state observable at <em>t</em>; the persistence badge marks tracks that remain relevant the following week. Source: <a href="https://github.com/arnav-goel10/music-trend-recommender">arnav-goel10/music-trend-recommender</a>.</p>
+</div>
+<script>
+const DATA = __DATA__;
+const tabs = document.getElementById('tabs');
+const list = document.getElementById('list');
+const COMPONENTS = ["source_blend","confirmation","momentum","freshness","age_decay","popularity"];
+
+function esc(s){ const d=document.createElement('div'); d.textContent=String(s); return d.innerHTML; }
+
+function show(i){
+  [...tabs.children].forEach((b,j)=>b.classList.toggle('on', i===j));
+  const wk = DATA.weeks[i];
+  const rel = new Set(wk.relevant_next_week);
+  list.innerHTML = wk.ranked.map((c, idx) => {
+    const comps = COMPONENTS.map(k=>{
+      const v = c.components[k] ?? 0;
+      const pct = Math.max(2, Math.min(100, v*62));
+      return `<span>${k}</span><span class="bar"><i style="width:${pct}%"></i></span><span>${v.toFixed(3)}</span>`;
+    }).join('');
+    const srcs = Object.entries(c.sources).map(([s,r])=>`${esc(s)} #${r}`).join(' · ');
+    return `<div class="card">
+      <div class="row1">
+        <span><span class="rank">${String(idx+1).padStart(2,'0')}</span> <span class="title">${esc(c.title)}</span> <span class="artist">· ${esc(c.artist)}</span></span>
+        <span>${rel.has(c.key) ? '<span class="persist">persists next week</span> ' : ''}<span class="score">score ${c.final_score.toFixed(3)}</span></span>
+      </div>
+      <div class="srcs">${srcs} · first seen ${esc(c.first_seen)}</div>
+      <div class="comp">${comps}</div>
+    </div>`;
+  }).join('');
+}
+
+DATA.weeks.forEach((wk, i) => {
+  const b = document.createElement('button');
+  b.textContent = wk.week;
+  b.addEventListener('click', ()=>show(i));
+  tabs.appendChild(b);
+});
+show(0);
+
+const tb = document.querySelector('#evalTable tbody');
+const fmt = (row, name) => row[name] === undefined ? '' :
+  row[name].toFixed(3) + (row[name + '_std'] !== undefined ? ' ± ' + row[name + '_std'].toFixed(3) : '');
+tb.innerHTML = DATA.evaluation.map(r =>
+  `<tr><td>${esc(r.week)}</td><td>${esc(r.method)}</td><td>${fmt(r,'precision_at_k')}</td><td>${fmt(r,'recall_at_k')}</td><td>${fmt(r,'ndcg_at_k')}</td><td>${fmt(r,'source_coverage')}</td></tr>`
+).join('');
+</script>
+</body>
+</html>

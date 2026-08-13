@@ -18,6 +18,7 @@ Developed and maintained by Arnav Goel. The included evaluation dataset is fully
 - **Leakage-safe replay:** ranks week `t` using only features and carried state available at `t`, then evaluates against next-week persistence labels.
 - **Reproducible evaluation:** reports Precision@k, Recall@k, NDCG@k, source coverage, and repeated-seed population standard deviations.
 - **Offline-first interfaces:** strict JSON adapters and CLI commands run without Spotify credentials, paid APIs, or network access.
+- **Live replay demo:** a static viewer over the synthetic fixture, rebuilt by `scripts/build_demo.py`, at [arnav-goel10.github.io/music-trend-recommender](https://arnav-goel10.github.io/music-trend-recommender/).
 
 ## Architecture
 
